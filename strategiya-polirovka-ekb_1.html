@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Стратегия и анализ рынка — студия полировки кузова, Екатеринбург</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#15171B;
+    --panel:#1C1F24;
+    --panel-2:#23272D;
+    --line:#2C3036;
+    --text:#ECE9E2;
+    --text-dim:#9A9DA1;
+    --gold:#D4AF6A;
+    --gold-soft:#332B18;
+    --red:#B3473F;
+    --red-soft:#301F1D;
+    --grey-bar:#5B5F66;
+    --gold-bar:#D4AF6A;
+    --red-bar:#B3473F;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+
+  /* --- Nav --- */
+  .topnav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(21,23,27,.9); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 32px; gap:16px; flex-wrap:wrap;
+  }
+  .topnav .brand{font-family:'Bebas Neue',sans-serif; letter-spacing:1px; font-size:1.15rem;}
+  .topnav .brand span{color:var(--gold);}
+  .topnav ul{list-style:none; display:flex; gap:18px; margin:0; padding:0; flex-wrap:wrap;}
+  .topnav a{
+    text-decoration:none; color:var(--text-dim); font-size:12px;
+    letter-spacing:.6px; text-transform:uppercase; font-family:'IBM Plex Mono',monospace;
+  }
+  .topnav a:hover{color:var(--gold);}
+
+  /* --- Hero --- */
+  .hero{max-width:1000px; margin:0 auto; padding:96px 32px 56px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:3px;
+    color:var(--gold); text-transform:uppercase; margin:0 0 14px;
+  }
+  .hero h1{
+    font-family:'Bebas Neue',sans-serif; text-transform:uppercase;
+    font-size:clamp(2.4rem,6vw,4rem); line-height:1.05; margin:0 0 20px; font-weight:400;
+  }
+  .hero h1 .shine{
+    background:linear-gradient(90deg,#B98E4B,#F3D9A4 45%,#D4AF6A);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero .lead{font-size:1.1rem; color:var(--text-dim); max-width:620px; margin:0 0 36px;}
+  .divider{height:2px; border:0; margin:0 0 40px; background:linear-gradient(90deg, transparent, var(--gold), transparent); opacity:.55;}
+  .meta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .meta-chip{background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 18px; min-width:170px;}
+  .meta-chip .n{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:1.05rem;}
+  .meta-chip .l{font-size:11.5px; color:var(--text-dim); margin-top:5px; text-transform:uppercase; letter-spacing:.5px;}
+
+  /* --- Main / sections --- */
+  main{max-width:1000px; margin:0 auto; padding:0 32px 40px;}
+  .section{padding:56px 0; border-top:1px solid var(--line);}
+  .section-title{
+    font-family:'Bebas Neue',sans-serif; text-transform:uppercase;
+    font-size:clamp(1.6rem,3vw,2.3rem); margin:0 0 22px; font-weight:400; letter-spacing:.5px;
+  }
+  p{color:var(--text); }
+  .lead-p{color:var(--text-dim); max-width:700px; margin:0 0 24px;}
+
+  .grid-2{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;}
+  .grid-3{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:22px;}
+  .card h3{font-family:'Inter',sans-serif; font-size:1rem; margin:0 0 10px; color:var(--gold); font-weight:600;}
+  .card p{font-size:14.5px; color:var(--text-dim); margin:0;}
+  .tag{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:1px; text-transform:uppercase; color:var(--text-dim);
+    border:1px solid var(--line); border-radius:20px; padding:3px 10px; margin-bottom:12px;
+  }
+
+  .stat-row{display:flex; gap:14px; flex-wrap:wrap; margin:20px 0 24px;}
+  .stat-chip{background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:12px 16px;}
+  .stat-chip .v{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:1rem;}
+  .stat-chip .k{font-size:11.5px; color:var(--text-dim); margin-top:3px;}
+
+  .note{
+    border-left:3px solid var(--red); background:var(--red-soft);
+    padding:16px 20px; border-radius:0 8px 8px 0; font-size:14.5px; margin-top:20px;
+  }
+  .note .note-label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--red); margin-bottom:6px;
+  }
+  .tip{
+    border-left:3px solid var(--gold); background:var(--gold-soft);
+    padding:16px 20px; border-radius:0 8px 8px 0; font-size:14.5px; margin-top:22px;
+  }
+  .tip .tip-label{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px;
+    text-transform:uppercase; color:var(--gold); margin-bottom:6px;
+  }
+  .card ul{margin:10px 0 0; padding-left:18px; font-size:14px; color:var(--text-dim);}
+  .card li{margin-bottom:5px;}
+
+  .quote{
+    border-left:3px solid var(--gold); background:var(--panel);
+    padding:22px 26px; border-radius:0 10px 10px 0; font-size:1.25rem;
+    font-style:italic; margin-bottom:28px;
+  }
+
+  .table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:10px;}
+  table{width:100%; border-collapse:collapse; font-size:14px; min-width:560px;}
+  th,td{padding:13px 16px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  th{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px;
+    text-transform:uppercase; color:var(--text-dim); background:var(--panel-2);
+  }
+  td.price{font-family:'IBM Plex Mono',monospace; color:var(--gold); white-space:nowrap;}
+  td.sum{font-family:'IBM Plex Mono',monospace; color:var(--gold); white-space:nowrap; font-weight:600;}
+
+  .kpi-card{background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:20px;}
+  .kpi-card .v{font-family:'IBM Plex Mono',monospace; font-size:1.5rem; color:var(--gold);}
+  .kpi-card .v small{font-size:.9rem; color:var(--text-dim); font-weight:400;}
+  .kpi-card .l{font-size:13px; color:var(--text-dim); margin-top:8px;}
+
+  /* --- Gantt --- */
+  .legend{display:flex; gap:22px; flex-wrap:wrap; margin-bottom:22px;}
+  .legend-item{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--text-dim);}
+  .dot{width:11px; height:11px; border-radius:3px; display:inline-block;}
+  .dot-grey{background:var(--grey-bar);}
+  .dot-gold{background:var(--gold-bar);}
+  .dot-red{background:var(--red-bar);}
+
+  .gantt-scroll{overflow-x:auto; padding-bottom:8px;}
+  .gantt-inner{min-width:760px;}
+  .label-spacer{width:230px; flex-shrink:0;}
+  .gantt-months, .gantt-weeks, .gantt-row{display:flex; align-items:center;}
+  .gantt-months{padding-bottom:8px; border-bottom:1px solid var(--line);}
+  .month-group{
+    flex:1; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px;
+    letter-spacing:1px; text-transform:uppercase; color:var(--gold);
+  }
+  .gantt-weeks{padding:8px 0; border-bottom:1px solid var(--line);}
+  .week-cell{flex:1; text-align:center; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--text-dim);}
+  .gantt-row{padding:8px 0; border-bottom:1px solid var(--line);}
+  .gantt-row:last-child{border-bottom:none;}
+  .gantt-row .label{width:230px; flex-shrink:0; font-size:12.5px; padding-right:14px; color:var(--text);}
+  .gantt-row .track{flex:1; position:relative; height:22px;}
+  .bar{position:absolute; top:4px; height:14px; border-radius:7px;}
+  .bar-grey{background:var(--grey-bar);}
+  .bar-gold{background:var(--gold-bar);}
+  .bar-red{background:var(--red-bar);}
+
+  footer{max-width:1000px; margin:0 auto; padding:36px 32px 70px; border-top:1px solid var(--line); color:var(--text-dim); font-size:13.5px;}
+  footer strong{color:var(--text);}
+
+  /* --- Tabs --- */
+  .tabnav{display:flex; gap:8px;}
+  .tab-btn{
+    background:transparent; border:1px solid var(--line); color:var(--text-dim);
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.6px; text-transform:uppercase;
+    padding:8px 16px; border-radius:20px; cursor:pointer;
+  }
+  .tab-btn.is-active{color:var(--bg); background:var(--gold); border-color:var(--gold); font-weight:600;}
+  .tab-btn:hover:not(.is-active){color:var(--gold); border-color:var(--gold);}
+  .tab-panel{display:none;}
+  .tab-panel.is-active{display:block;}
+
+  .subnav{
+    display:flex; gap:10px; flex-wrap:wrap; max-width:1000px; margin:0 auto; padding:20px 32px 0;
+  }
+  .subnav a{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.6px; text-transform:uppercase;
+    color:var(--text-dim); text-decoration:none; border:1px solid var(--line); border-radius:16px; padding:6px 12px;
+  }
+  .subnav a:hover{color:var(--gold); border-color:var(--gold);}
+
+  /* --- Tag colour variants --- */
+  .tag-gold{color:var(--gold); border-color:var(--gold);}
+  .tag-red{color:var(--red); border-color:var(--red);}
+
+  /* --- Status dots (studios) --- */
+  .sdot{width:8px; height:8px; border-radius:50%; display:inline-block; flex-shrink:0;}
+  .sdot.good{background:var(--gold-bar);}
+  .sdot.warn{background:var(--grey-bar);}
+  .sdot.bad{background:var(--red-bar);}
+
+  /* --- Studio cards --- */
+  .studio-grid{display:flex; flex-direction:column; gap:16px; margin:22px 0;}
+  .studio-head{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:16px; flex-wrap:wrap;}
+  .studio-head h3{font-family:'Inter',sans-serif; font-size:1.1rem; margin:0 0 4px; color:var(--text); font-weight:600;}
+  .studio-head a{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--text-dim); text-decoration:none; word-break:break-all;}
+  .studio-head a:hover{color:var(--gold);}
+  .rating-badge{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold);
+    border:1px solid var(--line); border-radius:16px; padding:5px 12px; white-space:nowrap; height:fit-content;
+  }
+  .point-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin-bottom:14px;}
+  .point{background:var(--panel-2); border:1px solid var(--line); border-radius:8px; padding:11px 13px;}
+  .point .pk{font-size:10.5px; text-transform:uppercase; letter-spacing:.5px; color:var(--text-dim); margin-bottom:5px; display:flex; align-items:center; gap:6px;}
+  .point .pv{font-size:13.5px; color:var(--text);}
+  .studio-comment{font-size:14px; color:var(--text-dim); margin:0;}
+
+  .stack{display:flex; flex-direction:column; gap:14px; margin-top:20px;}
+
+  @media (max-width:640px){
+    .hero{padding:72px 20px 40px;}
+    main{padding:0 20px 30px;}
+    .topnav{padding:12px 16px;}
+    footer{padding:30px 20px 50px;}
+    .subnav{padding:16px 20px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="brand">СТУДИЯ<span> · </span>ПОЛИРОВКА · ЕКБ</div>
+  <div class="tabnav">
+    <button class="tab-btn is-active" data-tab="tab-strategy" type="button">Стратегия</button>
+    <button class="tab-btn" data-tab="tab-market" type="button">Анализ рынка</button>
+  </div>
+</nav>
+
+<div id="tab-strategy" class="tab-panel is-active">
+
+  <div class="subnav">
+    <a href="#audience">ЦА</a>
+    <a href="#competitors">Конкуренты</a>
+    <a href="#positioning">Позиция</a>
+    <a href="#pricing">Цены</a>
+    <a href="#channels">Каналы</a>
+    <a href="#content">Контент</a>
+    <a href="#kpi">KPI</a>
+    <a href="#roadmap">Roadmap</a>
+  </div>
+
+<header class="hero" id="top">
+  <p class="eyebrow">Маркетинговая стратегия · запуск</p>
+  <h1>Из гаража — <span class="shine">в запись на неделю вперёд</span></h1>
+  <p class="lead">Студия полировки кузова, Екатеринбург. Ноль клиентов, гараж в промзоне и 15&nbsp;000&nbsp;₽ на первый квартал. План на первые 3 месяца: кого искать, чем зацепить и куда вложить каждый рубль.</p>
+  <hr class="divider">
+  <div class="meta-row">
+    <div class="meta-chip"><div class="n">15 000 ₽</div><div class="l">Бюджет на 3 месяца</div></div>
+    <div class="meta-chip"><div class="n">до 7 / нед</div><div class="l">Мощность студии</div></div>
+    <div class="meta-chip"><div class="n">Екатеринбург</div><div class="l">Рынок, высокая конкуренция</div></div>
+    <div class="meta-chip"><div class="n">31.07.2026</div><div class="l">Дата составления</div></div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 01 ЦА -->
+  <section class="section" id="audience">
+    <p class="eyebrow">01 / 08</p>
+    <h2 class="section-title">Целевая аудитория</h2>
+    <p class="lead-p">Базы клиентов ещё нет, портрет по возрасту и доходу собирать не из чего. Но стартовый фокус выбран осознанно: не «полировка вообще», а конкретная проблема, которую человек видит своими глазами.</p>
+    <div class="grid-2">
+      <div class="card">
+        <span class="tag">Основной сегмент · старт</span>
+        <h3>Точечный дефект</h3>
+        <p>Владелец личного авто в Екатеринбурге, который заметил конкретный скол, царапину или паутинку на кузове. Ему не нужен комплексный детейлинг за 20&nbsp;000&nbsp;₽ — нужно быстро и недорого убрать то, что бросается в глаза. Это ровно та аудитория, до которой достаёт листовка на лобовом стекле у машины со сколом.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Второй сегмент · рост со 2 месяца</span>
+        <h3>Предпродажная подготовка</h3>
+        <p>Тот, кто готовится продавать авто и хочет поднять цену объявления за счёт внешнего вида. Сильный эмоциональный триггер («машина продастся дороже»), но требует уже наработанного портфолио «до/после» — подключаем, когда появятся первые кейсы.</p>
+      </div>
+    </div>
+    <div class="note">
+      <span class="note-label">Открытый вопрос</span>
+      Реальный профиль клиента (возраст, марка авто, средний чек) появится только по факту первых заявок с Авито и 2ГИС. Стоит пересобрать этот раздел через 4–6 недель работы, когда накопится статистика обращений.
+    </div>
+  </section>
+
+  <!-- 02 Конкуренты -->
+  <section class="section" id="competitors">
+    <p class="eyebrow">02 / 08</p>
+    <h2 class="section-title">Конкурентная среда</h2>
+    <p class="lead-p">Рынок Екатеринбурга плотный: десятки частных мастеров на Профи.ру и не меньше 8–10 профильных студий (SVX, Стар-Тон, LocAuto, Allo-garage, Boomer66, «Обнови авто», Polirovkin и другие). Детальный разбор 8 из них — в новой вкладке «Анализ рынка».</p>
+    <div class="stat-row">
+      <div class="stat-chip"><div class="v">от 1 000 ₽</div><div class="k">локальная полировка 1 элемента</div></div>
+      <div class="stat-chip"><div class="v">от 3 080 ₽</div><div class="k">услуги частных мастеров</div></div>
+      <div class="stat-chip"><div class="v">5 000–50 000 ₽</div><div class="k">полный детейлинг под ключ</div></div>
+    </div>
+    <p>Слабое место крупных студий — долгий цикл (глубокая полировка может занимать до суток) и давление на дорогой комплекс услуг вместо решения конкретной проблемы. У маленькой гаражной студии с одним мастером есть шанс забрать нишу «быстро, точечно, недорого» — именно там, где крупным игрокам это невыгодно. Часть конкурентов уже строит позиционирование на «честности против чудо-паст» — сигнал, что аудитория устала от завышенных обещаний, и открытая, без разводов подача может сработать как отстройка.</p>
+    <p>Детальный разбор 8 действующих студий (сайт, путь до заявки, цены, репутация на картах) подтвердил и уточнил картину: сегмент делится на дорогой премиум без цен (K1), сетевые автосервисы, где детейлинг — один из разделов (SVX, Allo Garage), и более компактные студии с прозрачными ценами и понятным путём до заявки (Два Брата, Detail66, LOCAUTO PLUS) — именно на эту последнюю группу стоит равняться в части сайта/карточек, когда до них дойдут руки.</p>
+    <div class="note">
+      <span class="note-label">Важно · методология</span>
+      Один из лидеров по отзывам на бумаге («Детейлинг Центр Екатеринбург», 5.0 · 130 оценок) на деле помечен на Яндекс.Картах как «больше не работает». Не все «конкуренты», которые видны в поиске, реально действуют — плотность рынка может быть чуть ниже, чем кажется по числу сайтов в выдаче. Подробности — во вкладке «Анализ рынка».
+    </div>
+  </section>
+
+  <!-- 03 Позиционирование -->
+  <section class="section" id="positioning">
+    <p class="eyebrow">03 / 08</p>
+    <h2 class="section-title">Позиционирование и УТП</h2>
+    <div class="quote">«Убираем конкретный скол или царапину — быстро, честно, с гарантией. Без навязывания дорогого комплекса, который вам не нужен».</div>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Точечное решение</h3>
+        <p>Не впариваем полный детейлинг, если клиенту нужна одна деталь. Это и есть отстройка от рынка, где чек стараются раздуть.</p>
+      </div>
+      <div class="card">
+        <h3>Гарантия переделки</h3>
+        <p>Не устроил результат — бесплатно переделаем в течение недели. Снимает главный страх новичка на рынке: «а вдруг накосячат».</p>
+      </div>
+      <div class="card">
+        <h3>Личный контроль мастера</h3>
+        <p>Каждую машину веду сам, от начала до конца. Опора на внимание к деталям, а не на «10 лет стажа» — и без очереди «конвейером», как на крупных автомойках с детейлингом.</p>
+      </div>
+      <div class="card">
+        <h3>Запись на конкретное время</h3>
+        <p>Ни у одной студии из разобранных 8 нет реальной записи на время — только звонок или форма. Бесплатная онлайн-запись через Яндекс Бизнес — рабочая отстройка, которой пока ни у кого нет.</p>
+      </div>
+    </div>
+    <div class="note">
+      <span class="note-label">Честно про слабые места</span>
+      Небольшой опыт мастера и гаражная локация — то, что не стоит выпячивать в рекламе. Компенсация — гарантия переделки и растущее портфолио фото «до/после» с первых же клиентов, которое со временем станет весить больше, чем стаж на бумаге.
+    </div>
+  </section>
+
+  <!-- 04 Цены -->
+  <section class="section" id="pricing">
+    <p class="eyebrow">04 / 08</p>
+    <h2 class="section-title">Прайс-лист (черновой)</h2>
+    <p class="lead-p">Структура — не «полировка вообще», а по объёму работ, в тон позиционированию на точечные дефекты.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Услуга</th><th>Что входит</th><th>Цена, ориентир</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Точечная полировка</td><td>Один элемент — скол, царапина на бампере, двери, крыле</td><td class="price">800–1 200 ₽</td></tr>
+          <tr><td>Полировка зоны</td><td>Один узел целиком — бампер, капот или дверь</td><td class="price">2 000–3 500 ₽</td></tr>
+          <tr><td>Полировка кузова, лёгкая</td><td>Освежение всего авто без глубоких дефектов</td><td class="price">от 4 500 ₽</td></tr>
+          <tr><td>Полировка кузова, глубокая</td><td>Восстановление после серьёзных дефектов и паутинки</td><td class="price">по осмотру</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <span class="note-label">Важно</span>
+      Цены — ориентир на основе рынка Екатеринбурга (конкуренты берут от 1 000 ₽ за деталь и от 4 000 ₽ за полную полировку), а не расчёт себестоимости. Перед печатью прайса сверьте цифры с реальным временем на машину и стоимостью паст/расходников — этих данных пока нет.
+    </div>
+  </section>
+
+  <!-- 05 Каналы -->
+  <section class="section" id="channels">
+    <p class="eyebrow">05 / 08</p>
+    <h2 class="section-title">Каналы и бюджет — 15 000 ₽ на квартал</h2>
+    <p class="lead-p">При таком бюджете главный рычаг — не платный трафик, а системность в бесплатных каналах. Платное продвижение используем точечно, там, где аудитория уже ищет услугу здесь и сейчас.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Канал</th><th>Задача</th><th>Бюджет</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Яндекс Бизнес (2ГИС + Карты)</td><td>Профиль, фото работ, отзывы + <b style="color:var(--gold)">включённая онлайн-запись</b> — этого нет ни у одного из 8 разобранных конкурентов</td><td class="price">0 ₽</td></tr>
+          <tr><td>Авито</td><td>Объявления + периодические платные подъёмы</td><td class="price">6 000 ₽</td></tr>
+          <tr><td>Листовки</td><td>Дизайн + печать 500–800 шт. для расклейки на авто со сколами</td><td class="price">3 000 ₽</td></tr>
+          <tr><td>Instagram Reels</td><td>Контент «было / стало», только органика, без платного продвижения</td><td class="price">0 ₽</td></tr>
+          <tr><td>VK паблик + Клипы</td><td>Дублирование Reels, органический охват</td><td class="price">0 ₽</td></tr>
+          <tr><td>Telegram-канал</td><td>Дублирование контента, база подписчиков, основной канал связи с клиентом</td><td class="price">0 ₽</td></tr>
+          <tr><td>Партнёрства</td><td>Бартер и рекомендации с шиномонтажами, автомойками</td><td class="price">0 ₽</td></tr>
+          <tr><td>Визитки + QR на отзывы</td><td>Печать, раздача клиентам после работы</td><td class="price">2 000 ₽</td></tr>
+          <tr><td>Резерв</td><td>На непредвиденное — тест доп. канала, если что-то выстрелит</td><td class="price">4 000 ₽</td></tr>
+          <tr><td><strong>Итого</strong></td><td></td><td class="sum">15 000 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <span class="note-label">Про Instagram</span>
+      Делаем ставку только на органику в Reels — платного продвижения там нет: юрлицу реклама на площадке запрещена (штраф до 500 000 ₽), сервис заблокирован Роскомнадзором. Доступ и у вас, и у части аудитории — через VPN, это может ограничивать органический охват. TikTok для публикации новых роликов из РФ фактически не работает с 2022 года, поэтому им не пользуемся. Тот же контент дублируем в VK Клипы и Telegram — там охват без ограничений.
+    </div>
+    <div class="note">
+      <span class="note-label">Про WhatsApp</span>
+      Часть конкурентов держится на WhatsApp как основном канале связи (подробности — во вкладке «Анализ рынка»). С конца 2025 года Роскомнадзор последовательно ограничивает мессенджер в России — сначала звонки, затем сообщения, Минцифры прямо рекомендует переход на Telegram. Поэтому кнопку WhatsApp никуда не ставим — только Telegram и звонок, это уже заложено в плане.
+    </div>
+  </section>
+
+  <!-- 06 Контент-план -->
+  <section class="section" id="content">
+    <p class="eyebrow">06 / 08</p>
+    <h2 class="section-title">Контент-план: Reels и VK Клипы</h2>
+    <p class="lead-p">Полировка — благодарный жанр для коротких видео: макросъёмка, как дефект исчезает под насадкой, и резкий переход «было / стало» набирают охват сами по себе, без бюджета — снимаются прямо во время обычной работы.</p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Вирусный / залипательный</h3>
+        <p>Основа плана — меньше всего трудозатрат, снимается по ходу работы.</p>
+        <ul>
+          <li>Макросъёмка: паста + насадка, дефект тает на глазах</li>
+          <li>Резкий swipe-переход «до → после»</li>
+          <li>Отражение в кузове: было мутным — стало зеркальным</li>
+          <li>Звук машинки без музыки — заходит как ASMR</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Познавательный</h3>
+        <ul>
+          <li>Почему на кузове появляется паутинка</li>
+          <li>Что будет, если полировать дома самому неправильно</li>
+          <li>Полировка vs воск vs керамика — в чём разница</li>
+          <li>«Почему я не верю в чудо-пасты» — прямое попадание в позицию честности</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Продающий</h3>
+        <ul>
+          <li>Прямой оффер с ценой: «Скол — от 800 ₽, за день, с гарантией»</li>
+          <li>Ролик-меню: 3 вида полировки за 20 секунд</li>
+          <li>Ограниченный оффер: скидка первым 10 клиентам</li>
+          <li>Чёткий CTA в конце — куда писать</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Соцдоказательство</h3>
+        <ul>
+          <li>Реакция клиента при выдаче машины — живая эмоция</li>
+          <li>Отзыв текстом поверх видео процесса</li>
+          <li>«Прошла неделя — вот как выглядит сейчас»</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Закулисье / личный бренд</h3>
+        <ul>
+          <li>День в гараже как есть</li>
+          <li>Честно: «Только открылся, это мой первый месяц» — человеческая история вместо стажа</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Трендовый</h3>
+        <ul>
+          <li>Реагенты и соль на дорогах зимой в Екатеринбурге</li>
+          <li>Сколы от гравия на трассе</li>
+          <li>Адаптация трендовых форматов и звуков под нишу</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-chip"><div class="v">2–3 / нед</div><div class="k">роликов на старте</div></div>
+      <div class="stat-chip"><div class="v">~50%</div><div class="k">вирусный формат</div></div>
+      <div class="stat-chip"><div class="v">1 раз / 1–2 нед</div><div class="k">закулисье, трендовое</div></div>
+    </div>
+    <div class="tip">
+      <span class="tip-label">Практика для одного человека</span>
+      Телефон на струбцине/мини-штативе на каждой работе — съёмка идёт сама, без отдельного времени. Из одной машины режете 2–3 ролика: залипательный reveal, тот же кадр с озвучкой «что было не так» (познавательный), тот же кадр с ценой и CTA (продающий). Монтаж — раз в неделю пачкой, не после каждой машины.
+    </div>
+  </section>
+
+  <!-- 07 KPI -->
+  <section class="section" id="kpi">
+    <p class="eyebrow">07 / 08</p>
+    <h2 class="section-title">Метрики на 3 месяца</h2>
+    <div class="grid-3">
+      <div class="kpi-card"><div class="v">0 → 15–20</div><div class="l">Обращений в месяц (звонки + сообщения)</div></div>
+      <div class="kpi-card"><div class="v">40–50<small>%</small></div><div class="l">Конверсия «обращение → запись»</div></div>
+      <div class="kpi-card"><div class="v">0 → 4–5<small>/нед</small></div><div class="l">Загрузка студии (из макс. 7)</div></div>
+      <div class="kpi-card"><div class="v">0 → 15–20</div><div class="l">Отзывов на 2ГИС и Яндекс Картах</div></div>
+      <div class="kpi-card"><div class="v">бюджет / клиенты</div><div class="l">Стоимость привлечения — считать по факту</div></div>
+    </div>
+  </section>
+
+  <!-- 08 Roadmap -->
+  <section class="section" id="roadmap">
+    <p class="eyebrow">08 / 08</p>
+    <h2 class="section-title">Дорожная карта — 12 недель</h2>
+    <p class="lead-p">Диаграмма Ганта по задачам из разделов выше. Цвет бара показывает тип задачи.</p>
+    <div class="legend">
+      <span class="legend-item"><i class="dot dot-grey"></i>Настройка / разовая задача</span>
+      <span class="legend-item"><i class="dot dot-gold"></i>Постоянная работа с трафиком</span>
+      <span class="legend-item"><i class="dot dot-red"></i>Точка решения</span>
+    </div>
+
+    <div class="gantt-scroll">
+      <div class="gantt-inner">
+
+        <div class="gantt-months">
+          <div class="label-spacer"></div>
+          <div class="month-group">Месяц 1 · Запуск</div>
+          <div class="month-group">Месяц 2 · Трэкшн</div>
+          <div class="month-group">Месяц 3 · Масштаб</div>
+        </div>
+        <div class="gantt-weeks">
+          <div class="label-spacer"></div>
+          <div class="week-cell">1</div><div class="week-cell">2</div><div class="week-cell">3</div><div class="week-cell">4</div>
+          <div class="week-cell">5</div><div class="week-cell">6</div><div class="week-cell">7</div><div class="week-cell">8</div>
+          <div class="week-cell">9</div><div class="week-cell">10</div><div class="week-cell">11</div><div class="week-cell">12</div>
+        </div>
+
+        <div class="gantt-row"><div class="label">1. Прайс-лист + профиль Яндекс Бизнес с онлайн-записью + Авито</div><div class="track"><div class="bar bar-grey" style="left:0%;width:8.33%" title="Неделя 1"></div></div></div>
+        <div class="gantt-row"><div class="label">2. Дизайн и печать листовок</div><div class="track"><div class="bar bar-grey" style="left:0%;width:16.67%" title="Недели 1–2"></div></div></div>
+        <div class="gantt-row"><div class="label">3. Расклейка листовок на авто со сколами</div><div class="track"><div class="bar bar-gold" style="left:8.33%;width:91.67%" title="Недели 2–12"></div></div></div>
+        <div class="gantt-row"><div class="label">4. Запуск Instagram, VK и Telegram</div><div class="track"><div class="bar bar-grey" style="left:8.33%;width:8.33%" title="Неделя 2"></div></div></div>
+        <div class="gantt-row"><div class="label">5. Объявления на Авито</div><div class="track"><div class="bar bar-gold" style="left:8.33%;width:91.67%" title="Недели 2–12"></div></div></div>
+        <div class="gantt-row"><div class="label">6. Первые клиенты + фото «до/после»</div><div class="track"><div class="bar bar-red" style="left:16.67%;width:16.67%" title="Недели 3–4"></div></div></div>
+        <div class="gantt-row"><div class="label">7. Регулярные Reels + VK Клипы (2–3/нед)</div><div class="track"><div class="bar bar-gold" style="left:25%;width:75%" title="Недели 4–12"></div></div></div>
+        <div class="gantt-row"><div class="label">8. Сбор отзывов на 2ГИС / Яндекс</div><div class="track"><div class="bar bar-gold" style="left:25%;width:75%" title="Недели 4–12"></div></div></div>
+        <div class="gantt-row"><div class="label">9. Партнёрства: шиномонтаж, автомойки</div><div class="track"><div class="bar bar-grey" style="left:33.33%;width:33.33%" title="Недели 5–8"></div></div></div>
+        <div class="gantt-row"><div class="label">10. Тест платного продвижения на Авито</div><div class="track"><div class="bar bar-gold" style="left:33.33%;width:33.33%" title="Недели 5–8"></div></div></div>
+        <div class="gantt-row"><div class="label">11. Анализ каналов, перераспределение бюджета</div><div class="track"><div class="bar bar-red" style="left:66.67%;width:8.33%" title="Неделя 9"></div></div></div>
+        <div class="gantt-row"><div class="label">12. Программа «приведи друга»</div><div class="track"><div class="bar bar-gold" style="left:66.67%;width:33.33%" title="Недели 9–12"></div></div></div>
+        <div class="gantt-row"><div class="label">13. Итог по загрузке — решение по найму</div><div class="track"><div class="bar bar-red" style="left:83.33%;width:16.67%" title="Недели 11–12"></div></div></div>
+        <div class="gantt-row"><div class="label">14. Апсейл: предложение по керамике</div><div class="track"><div class="bar bar-grey" style="left:75%;width:25%" title="Недели 10–12"></div></div></div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>Открытые вопросы для следующей итерации:</strong> себестоимость услуги (время мастера + расходники) пока не считали — раздел 04 нужно свериться с реальными затратами перед печатью прайса. Профиль клиента уточнится по факту первых заявок с Авито и 2ГИС — раздел 01 стоит пересобрать через 4–6 недель.
+  <br><br>
+  Стратегия составлена 31.07.2026 на основе рыночных данных по Екатеринбургу и вводных владельца студии.
+</footer>
+
+</div><!-- /tab-strategy -->
+
+<div id="tab-market" class="tab-panel">
+
+  <div class="subnav">
+    <a href="#m-overview">Обзор</a>
+    <a href="#m-studios">Студии</a>
+    <a href="#m-summary">Сводка</a>
+    <a href="#m-conclusions">Выводы</a>
+  </div>
+
+  <header class="hero" id="m-overview">
+    <p class="eyebrow">Разведка рынка · Екатеринбург</p>
+    <h1>8 студий <span class="shine">под микроскопом</span></h1>
+    <p class="lead">Разбор digital-присутствия действующих детейлинг-студий Екатеринбурга: сайт, путь до заявки, цены, репутация на Яндекс.Картах и 2ГИС. Источник — сайты студий, Яндекс.Карты и 2ГИС, июль 2026.</p>
+    <hr class="divider">
+    <div class="meta-row">
+      <div class="meta-chip"><div class="n">8 студий</div><div class="l">Изучено</div></div>
+      <div class="meta-chip"><div class="n">0 из 8</div><div class="l">С записью на время</div></div>
+      <div class="meta-chip"><div class="n">3 из 8</div><div class="l">С открытыми ценами</div></div>
+      <div class="meta-chip"><div class="n">28–276</div><div class="l">Разброс отзывов на картах</div></div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section" id="m-studios" style="border-top:none; padding-top:0;">
+      <h2 class="section-title">Кто на рынке</h2>
+      <div class="legend">
+        <span class="legend-item"><i class="sdot good"></i>Сильная сторона</span>
+        <span class="legend-item"><i class="sdot warn"></i>Средне — есть, но не идеально</span>
+        <span class="legend-item"><i class="sdot bad"></i>Слабое место</span>
+      </div>
+
+      <div class="studio-grid">
+
+        <div class="card">
+          <div class="studio-head">
+            <div><h3>Детейлинг Центр Екатеринбург</h3><a href="https://detailing-ekaterinburg.ru/" target="_blank" rel="noopener">detailing-ekaterinburg.ru</a></div>
+            <span class="rating-badge">★ 5.0 · 130 оценок (по сайту)</span>
+          </div>
+          <div class="point-grid">
+            <div class="point"><div class="pk"><span class="sdot good"></span>Сайт</div><div class="pv">WordPress/Elementor, регулярно обновляется</div></div>
+            <div class="point"><div class="pk"><span class="sdot bad"></span>Путь до заявки</div><div class="pv">Только WhatsApp / клик-тел, формы или записи нет</div></div>
+            <div class="point"><div class="pk"><span class="sdot bad"></span>Цены</div><div class="pv">Не указаны — только «от 1 200 ₽»</div></div>
+          </div>
+          <p class="studio-comment">На сайте — виджет с «5★, 130 оценок», но карточка организации на Яндекс.Картах отмечена статусом «больше не работает». Внизу страницы — объявление о продаже самого сайта за 250 000 ₽. Похоже на студию, которая закрылась или переехала, а сайт остался в топе поиска.</p>
+          <div class="note" style="margin-top:14px;"><span class="note-label">Флаг</span>Карточка на Яндекс.Картах помечена как закрытая — возможен разрыв между сайтом и реальной работой студии.</div>
+        </div>
+
+        <div class="card">
+          <div class="studio-head">
+            <div><h3>Два Брата (бывш. «Полировкин»)</h3><a href="https://dvabrata-auto.ru/" target="_blank" rel="noopener">dvabrata-auto.ru</a></div>
+            <span class="rating-badge">★ 4.8 · 68 оценок / 42 отзыва</span>
+          </div>
+          <div class="point-grid">
+            <div class="point"><div class="pk"><span class="sdot good"></span>Сайт</div><div class="pv">Современный, обновлён в 2026</div></div>
+            <div class="point"><div class="pk"><span class="sdot good"></span>Путь до заявки</div><div class="pv">Форма заявки + калькулятор стоимости по марке авто</div></div>
+            <div class="point"><div class="pk"><span class="sdot warn"></span>Цены</div><div class="pv">Прямых цен нет, но есть интерактивный расчёт</div></div>
+          </div>
+          <p class="studio-comment">Семейная студия с 2008 года. Живой блог с примерами свежих работ, честная позиция «скажем, если услуга не нужна». Отвечает даже на негативные отзывы (про плёнку на порогах) — работает на доверие, а не прячет минусы.</p>
+        </div>
+
+        <div class="card">
+          <div class="studio-head">
+            <div><h3>SVX Detailing</h3><a href="https://svx-ekb.ru/" target="_blank" rel="noopener">svx-ekb.ru</a></div>
+            <span class="rating-badge">★ 4.6 · 276 оценок / 105 отзывов</span>
+          </div>
+          <div class="point-grid">
+            <div class="point"><div class="pk"><span class="sdot good"></span>Сайт</div><div class="pv">Сеть филиалов, большой каталог услуг</div></div>
+            <div class="point"><div class="pk"><span class="sdot warn"></span>Путь до заявки</div><div class="pv">Заявка на каждую услугу, без выбора времени</div></div>
+            <div class="point"><div class="pk"><span class="sdot warn"></span>Цены</div><div class="pv">Скрыты на сайте, видны на Я.Картах (полировка — 25 000 ₽)</div></div>
+          </div>
+          <p class="studio-comment">Самая крупная сеть и больше всего отзывов в подборке — автомойка + шиномонтаж + детейлинг в одном месте. Но часть свежих отзывов — про долгое ожидание и мелкие огрехи, а не про сам детейлинг. Крупный оборот не значит одинаковое качество на каждом чеке.</p>
+        </div>
+
+        <div class="card">
+          <div class="studio-head">
+            <div><h3>LOCAUTO PLUS</h3><a href="https://www.locautoplus.ru/" target="_blank" rel="noopener">locautoplus.ru</a></div>
+            <span class="rating-badge">2ГИС 4.9 · Я.Карты 5.0</span>
+          </div>
+          <div class="point-grid">
+            <div class="point"><div class="pk"><span class="sdot good"></span>Сайт</div><div class="pv">Два филиала, чистая структура разделов</div></div>
+            <div class="point"><div class="pk"><span class="sdot warn"></span>Адаптив</div><div class="pv">Зум на мобильном жёстко заблокирован</div></div>
+            <div class="point"><div class="pk"><span class="sdot good"></span>Цены</div><div class="pv">Указаны прямо в карточках услуг — единственные в подборке</div></div>
+          </div>
+          <p class="studio-comment">Скидка 7% за запись через сайт — рабочий приём для конверсии трафика с сайта в звонок. Число отзывов независимо перепроверить не удалось: под похожими названиями на картах фигурируют разные организации.</p>
+        </div>
+
+        <div class="card">
+          <div class="studio-head">
+            <div><h3>Detailing Hub</h3><a href="https://detailing-hub.pro/" target="_blank" rel="noopener">detailing-hub.pro</a></div>
+            <span class="rating-badge">Карточка на картах не найдена</span>
+          </div>
+          <div class="point-grid">
+            <div class="point"><div class="pk"><span class="sdot warn"></span>Сайт</div><div class="pv">React SPA на no-code конструкторе, контент рендерится через JS</div></div>
+            <div class="point"><div class="pk"><span class="sdot bad"></span>Репутация</div><div class="pv">Не найдена ни на Яндекс.Картах, ни на 2ГИС</div></div>
+          </div>
+          <p class="studio-comment">Технически современный сайт, но студия не «прописана» на картах — а значит, теряет весь трафик тех, кто ищет детейлинг сразу на Яндекс/2ГИС Картах, это основной канал для локального сервиса.</p>
+          <div class="note" style="margin-top:14px;"><span class="note-label">Флаг</span>Нет подтверждённого присутствия на картах — репутацию проверить не удалось.</div>
+        </div>
+
+        <div class="card">
+          <div class="studio-head">
+            <div><h3>Garage (Allo Garage)</h3><a href="https://allo-garage.com/uslugi/deteyling/" target="_blank" rel="noopener">allo-garage.com</a></div>
+            <span class="rating-badge">Точное число отзывов не подтверждено</span>
+          </div>
+          <div class="point-grid">
+            <div class="point"><div class="pk"><span class="sdot good"></span>Сайт</div><div class="pv">Детейлинг — один из разделов автосервиса</div></div>
+            <div class="point"><div class="pk"><span class="sdot good"></span>Цены</div><div class="pv">Полный прайс на странице услуги — от 350 ₽ до 200 000 ₽</div></div>
+            <div class="point"><div class="pk"><span class="sdot warn"></span>Путь до заявки</div><div class="pv">Форма обратного звонка, без записи на время</div></div>
+          </div>
+          <p class="studio-comment">Самый подробный и открытый прайс-лист из всей подборки. Но позиционируется скорее как «автосервис с детейлингом» — покраска и шиномонтаж на первом плане структуры сайта.</p>
+        </div>
+
+        <div class="card">
+          <div class="studio-head">
+            <div><h3>K1 Detailing</h3><a href="http://k1-detailing.ru/" target="_blank" rel="noopener">k1-detailing.ru</a></div>
+            <span class="rating-badge">2ГИС 5.0 · 28 оценок</span>
+          </div>
+          <div class="point-grid">
+            <div class="point"><div class="pk"><span class="sdot good"></span>Сайт</div><div class="pv">Премиальное позиционирование — Porsche, Bentley в портфолио</div></div>
+            <div class="point"><div class="pk"><span class="sdot bad"></span>Цены</div><div class="pv">Не указаны нигде — «всё под ваш автомобиль»</div></div>
+          </div>
+          <p class="studio-comment">Осознанная премиум-стратегия без цен, охраняемая площадка, официальная работа с документами. Хорошая ниша, но заведомо меньшая аудитория — не пересекается с нашим стартовым сегментом.</p>
+        </div>
+
+        <div class="card">
+          <div class="studio-head">
+            <div><h3>Detail66</h3><a href="https://detail66.ru/" target="_blank" rel="noopener">detail66.ru</a></div>
+            <span class="rating-badge">2ГИС 4.8 · 49 отзывов</span>
+          </div>
+          <div class="point-grid">
+            <div class="point"><div class="pk"><span class="sdot good"></span>Сайт</div><div class="pv">С 2016 года на рынке, конструктор Creatium</div></div>
+            <div class="point"><div class="pk"><span class="sdot good"></span>Путь до заявки</div><div class="pv">Форма + пошаговый калькулятор: услуга → марка авто → контакты</div></div>
+            <div class="point"><div class="pk"><span class="sdot good"></span>Цены</div><div class="pv">Подробный прайс с разбивкой по брендам плёнки</div></div>
+          </div>
+          <p class="studio-comment">Один из самых сбалансированных сайтов в подборке: открытые цены, интерактивный расчёт, официально зарегистрированное ИП с реквизитами на сайте — редкость для этого рынка.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="m-summary">
+      <h2 class="section-title">Сводная таблица</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Студия</th><th>Сайт</th><th>Путь до заявки</th><th>Цены</th><th>Рейтинг</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Детейлинг Центр ЕКБ</td><td>Есть</td><td>Только тел./WhatsApp</td><td>Нет</td><td>5.0 · 130 (⚠ не работает)</td></tr>
+            <tr><td>Два Брата</td><td>Есть</td><td>Форма + калькулятор</td><td>По запросу</td><td>4.8 · 68 оценок</td></tr>
+            <tr><td>SVX Detailing</td><td>Есть</td><td>Заявка на услугу</td><td>Скрыты / видны на картах</td><td>4.6 · 276 оценок</td></tr>
+            <tr><td>LOCAUTO PLUS</td><td>Есть (без зума)</td><td>Обратный звонок</td><td>Да, открыто</td><td>2ГИС 4.9</td></tr>
+            <tr><td>Detailing Hub</td><td>Есть (SPA)</td><td>Не проверено</td><td>Не проверено</td><td>Не найдено</td></tr>
+            <tr><td>Garage (Allo)</td><td>Есть</td><td>Обратный звонок</td><td>Да, полный прайс</td><td>Не подтверждено</td></tr>
+            <tr><td>K1 Detailing</td><td>Есть</td><td>Форма «узнать цену»</td><td>Нет (премиум)</td><td>2ГИС 5.0 · 28</td></tr>
+            <tr><td>Detail66</td><td>Есть</td><td>Форма + калькулятор</td><td>Да, подробно</td><td>2ГИС 4.8 · 49</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="section-title" style="font-size:1.3rem; margin-top:36px;">Что бросается в глаза</h3>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Записи на время нет ни у кого</h3>
+          <p>Максимум — форма заявки или калькулятор стоимости, дальше всё решается звонком или мессенджером. Реальная запись на слот выделила бы на фоне всего рынка, не только конкурентов.</p>
+        </div>
+        <div class="card">
+          <h3>Открытый прайс — меньше половины рынка</h3>
+          <p>Allo Garage, LOCAUTO PLUS и Detail66 — самые прозрачные, и у них публичная цена работает как фильтр нецелевых заявок. Студии без цен либо целят в премиум осознанно, либо просто не посчитали прайс.</p>
+        </div>
+        <div class="card">
+          <h3>«Мёртвая» карточка у лидера по отзывам</h3>
+          <p>Кейс «Детейлинг Центр Екатеринбург» — предостережение: сайт может выглядеть живым и копить репутацию годами, а по факту компания уже не работает по адресу.</p>
+        </div>
+        <div class="card">
+          <h3>JS-лендинг без карточки на картах — риск</h3>
+          <p>Detailing Hub технически современный, но для локального сервиса большая часть клиентов ищет через карты, а не органическую выдачу сайта. Красивый сайт без карточки — упущенный основной канал.</p>
+        </div>
+        <div class="card">
+          <h3>Разброс отзывов 28–276</h3>
+          <p>Это не только возраст бизнеса, но и агрессивность сбора отзывов: студии с калькулятором на сайте в среднем активнее ведут карточки и отвечают на отзывы — стоит копировать с первого дня.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="m-conclusions">
+      <h2 class="section-title">Выводы и правки для нашей стратегии</h2>
+      <p class="lead-p">Что из разбора рынка меняет или подтверждает раздел «Стратегия» — уже внесено в соответствующие разделы, здесь — свод с пометкой, что именно поменялось.</p>
+
+      <div class="stack">
+        <div class="card">
+          <span class="tag tag-gold">Добавлено · Каналы, УТП</span>
+          <h3>Онлайн-запись — бесплатная отстройка от всего рынка</h3>
+          <p>Ни у одной из 8 студий нет записи на конкретное время — только звонок или форма. Яндекс Бизнес (объединяет карточку на Картах и в Поиске) поддерживает бесплатную настройку онлайн-записи. Добавлено в раздел «Каналы» и как 4-й пункт УТП.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Подтверждено · Цены</span>
+          <h3>Открытый прайс «от» — рабочий фильтр лидов</h3>
+          <p>Allo Garage, LOCAUTO PLUS и Detail66 подтверждают: открытая цена отсекает нецелевые звонки, а не отпугивает клиентов. Черновой прайс-лист (раздел «Цены») — верное решение, менять не нужно.</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-gold">Добавлено · Каналы</span>
+          <h3>Путь до заявки — один клик, не форма</h3>
+          <p>Лучшие практики рынка — кнопка звонка или сообщения видна сразу, без анкет на 10 полей. Используем это правило на всех точках контакта: 2ГИС, Авито, листовки — прямая кнопка Telegram или звонка.</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-red">Новое · Риск</span>
+          <h3>WhatsApp как основной канал связи — не наш вариант</h3>
+          <p>Часть студий держится на WhatsApp (Детейлинг Центр ЕКБ — только WhatsApp/тел., K1 — мессенджеры). С конца 2025 года Роскомнадзор последовательно ограничивает WhatsApp в России — сначала звонки, затем сообщения, Минцифры рекомендует переход на Telegram. Наш выбор Telegram изначально верный — WhatsApp-кнопку никуда не ставим, это зафиксировано в разделе «Каналы».</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-red">Важно · Методология</span>
+          <h3>Проверяйте статус конкурента на картах, а не только сайт</h3>
+          <p>Кейс «Детейлинг Центр Екатеринбург» — сайт выглядит живым и с рейтингом 5.0 (130 оценок), но карточка на Яндекс.Картах помечена «больше не работает». Часть конкурентов, на которых можно было бы ориентироваться, вероятно, уже не действует — реальная плотность конкуренции может быть чуть ниже, чем казалось.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Подтверждено · Каналы</span>
+          <h3>Сайт — не приоритет на старте</h3>
+          <p>У нас пока нет сайта вообще, и это нормально: даже у части действующих студий современный сайт (Detailing Hub) не даёт эффекта без карточки на картах, откуда реально приходят локальные клиенты. Карточки на Яндекс Бизнес и Авито остаются приоритетом, сайт — задача не раньше первого потока.</p>
+        </div>
+        <div class="card">
+          <span class="tag tag-gold">Добавлено · Позиционирование</span>
+          <h3>«Личный контроль мастера» — прямой контраргумент SVX</h3>
+          <p>У самой крупной сети в подборке (SVX, 276 оценок) часть свежих отзывов — про долгое ожидание и мелкие огрехи на потоке. Тезис «веду каждую машину сам, без очереди как на автомойке» бьёт именно в эту слабость — добавлен как явный пункт УТП.</p>
+        </div>
+        <div class="card">
+          <span class="tag">Подтверждено · KPI</span>
+          <h3>Отзывы собирать активно с первого дня</h3>
+          <p>Студии с продуманным путём до заявки (Два Брата, Detail66) в среднем активнее ведут карточки и отвечают на отзывы. План собрать 15–20 отзывов к 3 месяцу — курс верный, исследование только подтверждает приоритет.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Отчёт подготовлен на основе анализа сайтов, Яндекс.Карт и 2ГИС в июле 2026 года. Автоматическая проверка скорости загрузки в рамках этого запроса технически недоступна — оценка адаптива дана по наличию корректного viewport-тега и общей структуре вёрстки.
+  </footer>
+
+</div><!-- /tab-market -->
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('is-active'); });
+      document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      document.getElementById(btn.dataset.tab).classList.add('is-active');
+      window.scrollTo({top:0, behavior:'auto'});
+    });
+  });
+</script>
+
+</body>
+</html>
